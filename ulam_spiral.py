@@ -9,7 +9,7 @@ class UlamSpiral:
         else:
             self.matrix: np.array = self.create_matrix(dim)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return str(self.matrix)
 
     def create_matrix(self, dim: int) -> np.array:
@@ -102,7 +102,7 @@ class UlamSpiral:
         return 0
 
 
-# Testing out Ulam Spirals with dimensions in the range [2,10]
+# Testing out Ulam Spirals with dimensions in the range [2,10)
 for i in range(2,10):
     spiral = UlamSpiral(i)
     print(spiral)
