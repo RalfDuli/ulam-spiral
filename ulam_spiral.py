@@ -5,9 +5,11 @@ class UlamSpiral:
     def __init__(self, dim) -> None:
         if dim < 2:
             self.matrix: np.array = None
-            raise Exception("Dimensions of Ulam Spiral is less than 2")
+            raise Exception("Dimensions of Ulam Spiral are less than 2")
         else:
             self.matrix: np.array = self.create_matrix(dim)
+
+        self.dim = dim
 
     def __str__(self) -> str:
         return str(self.matrix)
@@ -19,7 +21,7 @@ class UlamSpiral:
         number as 0.
         '''
 
-        # Creates a dim x dim 0 matrix
+        # Creates a dim x dim zero matrix
         matrix = np.zeros(dim**2).reshape(dim, dim)
 
         # Draws a spiral on the matrix
@@ -100,9 +102,3 @@ class UlamSpiral:
     
         if is_prime(n): return 1
         return 0
-
-
-# Testing out Ulam Spirals with dimensions in the range [2,10)
-for i in range(2,10):
-    spiral = UlamSpiral(i)
-    print(spiral)
