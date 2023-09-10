@@ -8,11 +8,13 @@ class UlamSpiral:
             raise Exception("Dimensions of Ulam Spiral are less than 2")
         else:
             self.matrix: np.array = self.create_matrix(dim)
-
-        self.dim = dim
+            self.dim = dim
 
     def __str__(self) -> str:
         return str(self.matrix)
+    
+    def change_dim(self, new_dim):
+        self.__init__(new_dim)
 
     def create_matrix(self, dim: int) -> np.array:
         '''
