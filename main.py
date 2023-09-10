@@ -6,6 +6,11 @@ starting_dim = 5
 spiral = UlamSpiral(starting_dim)
 
 def draw_spiral(canvas):
+    '''
+    Draws the spiral in a grid format, with black squares
+    representing prime numbers and white squares representing
+    nonprime numbers.
+    '''
     scaling_factor = SCREEN_X / (spiral.dim * 1.25)
     canvas.delete("all")  # Clear the canvas
     for row in range(spiral.dim):
@@ -31,32 +36,24 @@ root.geometry(f"{SCREEN_X}x{SCREEN_Y}")
 prompt = tk.Label(text="Select the dimensions of the Ulam Spiral")
 prompt.pack(side = 'top')
 
+# Creates the button bar
+
 button_bar = tk.Frame(root)
 button_bar.pack(side='top')
 
-five_dim_button = tk.Button(button_bar, text='5x5', width=BUTTON_WIDTH, height=BUTTON_HEIGHT,
-                            command=lambda: change_dimension(5))
-five_dim_button.pack(side='left')
+button_dict = {
+    '5x5' : 5,
+    '10x10' : 10,
+    '12x12' : 12,
+    '15x15' : 15,
+    '20x20' : 20,
+    '50x50' : 50
+}
 
-ten_dim_button = tk.Button(button_bar, text='10x10', width=BUTTON_WIDTH, height=BUTTON_HEIGHT,
-                           command=lambda: change_dimension(10))
-ten_dim_button.pack(side='left')
-
-twelve_dim_button = tk.Button(button_bar, text='12x12', width=BUTTON_WIDTH, height=BUTTON_HEIGHT,
-                              command=lambda: change_dimension(12))
-twelve_dim_button.pack(side='left')
-
-fifteen_dim_button = tk.Button(button_bar, text='15x15', width=BUTTON_WIDTH, height=BUTTON_HEIGHT,
-                               command=lambda: change_dimension(15))
-fifteen_dim_button.pack(side='left')
-
-twenty_dim_button = tk.Button(button_bar, text='20x20', width=BUTTON_WIDTH, height=BUTTON_HEIGHT,
-                             command=lambda: change_dimension(20))
-twenty_dim_button.pack(side='left')
-
-fifty_dim_button = tk.Button(button_bar, text='50x50', width=BUTTON_WIDTH, height=BUTTON_HEIGHT,
-                             command=lambda: change_dimension(50))
-fifty_dim_button.pack(side='left')
+for key, dimensions in button_dict.items():
+    button = tk.Button(button_bar, text=key, width=BUTTON_WIDTH, height=BUTTON_HEIGHT,
+                        command=lambda d=dimensions: change_dimension(d))
+    button.pack(side='left')
 
 canvas = tk.Canvas(root, width=SCREEN_X, height=SCREEN_Y - MENU_HEIGHT)
 canvas.pack()
